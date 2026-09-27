@@ -44,6 +44,16 @@ const Courses: React.FC = () => {
       reviews: '780',
       price: '1,200',
     },
+    {
+      id: 5,
+      title: 'ডিজিটাল স্কিলস ফর প্রবাসী',
+      subtitle: 'অনলাইন ইনকাম ও ফ্রিল্যান্সিং',
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop',
+      lessons: 40,
+      rating: 4.8,
+      reviews: '1.5k',
+      price: '2,000',
+    }
   ];
 
   return (

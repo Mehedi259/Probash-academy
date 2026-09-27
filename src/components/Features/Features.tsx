@@ -34,12 +34,14 @@ const Features: React.FC = () => {
             <div className={styles.authorImage}>
               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Musa Ahmed" />
             </div>
-            <div className={styles.quote}>
-              "Hello Probash Academy শুধু একটি লার্নিং প্ল্যাটফর্ম নয়, এটি প্রবাসীদের জন্য একটি সহায়তা। জ্ঞান অর্জন করুন, নিজেকে প্রস্তুত করুন, ভবিষ্যৎ গড়ুন।"
-            </div>
-            <div className={styles.authorInfo}>
-              <strong>- Musa Ahmed</strong>
-              <span>Founder, Hello Probash Academy</span>
+            <div className={styles.testimonialContent}>
+              <div className={styles.quote}>
+                "Hello Probash Academy শুধু একটি লার্নিং প্ল্যাটফর্ম নয়, এটি প্রবাসীদের জন্য একটি সহায়তা। জ্ঞান অর্জন করুন, নিজেকে প্রস্তুত করুন, ভবিষ্যৎ গড়ুন।"
+              </div>
+              <div className={styles.authorInfo}>
+                <strong>- Musa Ahmed</strong>
+                <span>Founder, Hello Probash Academy</span>
+              </div>
             </div>
           </div>
         </div>

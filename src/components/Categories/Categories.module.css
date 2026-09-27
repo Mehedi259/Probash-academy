@@ -18,13 +18,14 @@
 @media (min-width: 1024px) {
   .grid {
     grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
   }
 }
 
 .card {
   background-color: var(--bg-white);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   padding: 1.5rem 1rem;
   display: flex;
   flex-direction: column;
@@ -32,6 +33,7 @@
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
+  box-shadow: var(--shadow-sm);
 }
 
 .card:hover {
@@ -41,23 +43,41 @@
 }
 
 .iconWrapper {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+}
+
+.arabicIcon {
+  background-color: var(--primary-blue);
+  color: white;
+  border-radius: var(--radius-md);
+  padding: 0.2rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+
+.letterA {
+  font-size: 1.2rem;
+}
+
+.arabicLetter {
+  font-size: 1.5rem;
 }
 
 .cardTitle {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--primary-blue);
   margin-bottom: 0.5rem;
 }
 
 .cardSubtitle {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--text-gray);
+  line-height: 1.3;
 }
