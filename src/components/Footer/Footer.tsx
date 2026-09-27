@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Youtube, Instagram, Linkedin, Send } from 'lucide-react';
+import { FaFacebook, FaYoutube, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import styles from './Footer.module.css';
 
 const Footer: React.FC = () => {
@@ -49,10 +49,10 @@ const Footer: React.FC = () => {
           <div className={styles.socialMedia}>
             <h4 className={styles.columnTitle}>Follow Us</h4>
             <div className={styles.socialIcons}>
-              <a href="#" className={styles.socialIcon}><Facebook size={20} /></a>
-              <a href="#" className={styles.socialIcon}><Youtube size={20} /></a>
-              <a href="#" className={styles.socialIcon}><Instagram size={20} /></a>
-              <a href="#" className={styles.socialIcon}><Linkedin size={20} /></a>
+              <a href="#" className={styles.socialIcon}><FaFacebook size={20} /></a>
+              <a href="#" className={styles.socialIcon}><FaYoutube size={20} /></a>
+              <a href="#" className={styles.socialIcon}><FaInstagram size={20} /></a>
+              <a href="#" className={styles.socialIcon}><FaLinkedin size={20} /></a>
             </div>
           </div>
 
