@@ -17,12 +17,12 @@ const Header: React.FC = () => {
 
         <nav className={styles.nav}>
           <ul className={styles.navList}>
-            <li className={styles.navItem}><a href="#" className={`${styles.navLink} ${styles.active}`}>Home</a></li>
-            <li className={styles.navItem}><a href="#" className={styles.navLink}>Courses</a></li>
-            <li className={styles.navItem}><a href="#" className={styles.navLink}>Oman Guide</a></li>
-            <li className={styles.navItem}><a href="#" className={styles.navLink}>Skills</a></li>
-            <li className={styles.navItem}><a href="#" className={styles.navLink}>Blog</a></li>
-            <li className={styles.navItem}><a href="#" className={styles.navLink}>About Us</a></li>
+            <li className={styles.navItem}><a href="#home" className={`${styles.navLink} ${styles.active}`}>Home</a></li>
+            <li className={styles.navItem}><a href="#courses" className={styles.navLink}>Courses</a></li>
+            <li className={styles.navItem}><a href="#oman-guide" className={styles.navLink}>Oman Guide</a></li>
+            <li className={styles.navItem}><a href="#skills" className={styles.navLink}>Skills</a></li>
+            <li className={styles.navItem}><a href="#blog" className={styles.navLink}>Blog</a></li>
+            <li className={styles.navItem}><a href="#about-us" className={styles.navLink}>About Us</a></li>
           </ul>
         </nav>
 

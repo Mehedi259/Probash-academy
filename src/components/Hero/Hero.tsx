@@ -49,27 +49,7 @@ const Hero: React.FC = () => {
             </button>
           </div>
 
-          <div className={styles.statsContainer}>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>5,000+</span>
-              <span className={styles.statLabel}>শিক্ষার্থী</span>
-            </div>
-            <div className={styles.statDivider}></div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>50+</span>
-              <span className={styles.statLabel}>অনলাইন কোর্স</span>
-            </div>
-            <div className={styles.statDivider}></div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>20+</span>
-              <span className={styles.statLabel}>এক্সপার্ট ইন্সট্রাক্টর</span>
-            </div>
-            <div className={styles.statDivider}></div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>95%</span>
-              <span className={styles.statLabel}>সন্তুষ্ট শিক্ষার্থী</span>
-            </div>
-          </div>
+
         </div>
       </div>
     </section>

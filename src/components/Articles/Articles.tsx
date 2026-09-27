@@ -14,7 +14,7 @@ const Articles: React.FC = () => {
     {
       id: 2,
       title: 'ওমানে নতুন প্রবাসীদের জন্য ১০টি গুরুত্বপূর্ণ টিপস',
-      image: 'https://images.unsplash.com/photo-1574512966579-245c4794218a?q=80&w=2070&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop',
       date: '12 Sep 2026',
       readTime: '4 min read',
     },

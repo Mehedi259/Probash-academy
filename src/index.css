@@ -121,3 +121,7 @@ button {
 /* Utility */
 .text-primary { color: var(--primary-red); }
 .text-blue { color: var(--primary-blue); }
+
+html {
+  scroll-behavior: smooth;
+}
