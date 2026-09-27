@@ -1,0 +1,166 @@
+.footer {
+  background-color: var(--primary-blue);
+  color: white;
+  padding-top: 4rem;
+}
+
+.footerContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .footerContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footerContainer {
+    grid-template-columns: 1.5fr 2fr 1.5fr;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.logoImg {
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.logoTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.logoSubtitle {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: white;
+}
+
+.logoTags {
+  display: block;
+  font-size: 0.55rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 1px;
+}
+
+.description {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  border-left: 2px solid var(--primary-red);
+  padding-left: 1rem;
+  margin-top: 1.5rem;
+}
+
+.linksGroup {
+  display: flex;
+  gap: 4rem;
+}
+
+.columnTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.linkList a {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.linkList a:hover {
+  color: white;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.socialIcon {
+  color: white;
+  transition: color 0.2s;
+}
+
+.socialIcon:hover {
+  color: var(--primary-red);
+}
+
+.subscribeForm {
+  display: flex;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.emailInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+.subscribeBtn {
+  background-color: var(--primary-red);
+  color: white;
+  padding: 0 1.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.subscribeBtn:hover {
+  background-color: #c91c25;
+}
+
+.footerBottom {
+  background-color: var(--secondary-blue);
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footerBottomContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+
+@media (min-width: 768px) {
+  .footerBottomContainer {
+    flex-direction: row;
+  }
+}
+
+.tagline {
+  font-style: italic;
+}
