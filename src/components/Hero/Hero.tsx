@@ -41,12 +41,12 @@ const Hero: React.FC = () => {
           </p>
           
           <div className={styles.heroButtons}>
-            <button className="btn btn-primary">
+            <a href="#courses" className="btn btn-primary">
               কোর্স শুরু করুন <ArrowRight size={18} />
-            </button>
-            <button className={`btn btn-outline ${styles.btnPlay}`}>
+            </a>
+            <a href="#courses" className={`btn btn-outline ${styles.btnPlay}`}>
               <PlayCircle size={20} className={styles.playIcon} /> কোর্স দেখুন
-            </button>
+            </a>
           </div>
 
 

@@ -1,18 +1,63 @@
 .coursesSection {
-  padding: 4rem 0;
+  padding: 4.5rem 0;
   background-color: var(--bg-light);
 }
 
-.viewAllBtn {
-  font-size: 0.85rem;
+.headerRow {
+  margin-bottom: 2.5rem;
+}
+
+.badgeWrapper {
+  margin-bottom: 0.5rem;
+}
+
+.sectionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #FEF2F2;
+  color: #E1212B;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid rgba(225, 33, 43, 0.2);
+}
+
+.filterPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.filterBtn {
+  background-color: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  color: #475569;
   padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.filterBtn:hover {
+  border-color: #E1212B;
+  color: #E1212B;
+}
+
+.activeFilter {
+  background-color: var(--primary-blue);
+  color: #FFFFFF;
+  border-color: var(--primary-blue);
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  margin-top: 1rem;
 }
 
 @media (min-width: 640px) {
@@ -23,23 +68,32 @@
 
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid {
+    /* Fits all 5 cards nicely or flexible grid */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 }
 
 .card {
   background-color: var(--bg-white);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E2E8F0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  border-color: #CBD5E1;
 }
 
 .imageContainer {
@@ -52,11 +106,53 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .card:hover .courseImage {
-  transform: scale(1.05);
+  transform: scale(1.06);
+}
+
+.cardBadge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 27, 59, 0.55);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.card:hover .imageOverlay {
+  opacity: 1;
+}
+
+.previewBtn {
+  background: white;
+  color: var(--primary-blue);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .cardContent {
@@ -66,37 +162,71 @@
   flex: 1;
 }
 
+.instructorMini {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.instructorImg {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.instructorNameTxt {
+  font-size: 0.78rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
 .courseTitle {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-  color: var(--text-dark);
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 0.15rem;
+  color: var(--primary-blue);
   line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+.courseTitle:hover {
+  color: #E1212B;
+}
+
+.englishTitleTag {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 .courseSubtitle {
   font-size: 0.85rem;
   color: var(--text-gray);
   margin-bottom: 1rem;
-  min-height: 2.5rem;
+  line-height: 1.45;
+  min-height: 2.8rem;
 }
 
 .metaInfo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 0;
-  border-bottom: none;
-  margin-bottom: 1.25rem;
-  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  font-size: 0.78rem;
   color: var(--text-gray);
   font-weight: 500;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #F1F5F9;
 }
 
 .metaItem {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
 }
 
 .cardFooter {
@@ -104,16 +234,51 @@
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
+  gap: 0.5rem;
 }
 
-.price {
-  font-size: 1.1rem;
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.priceBDT {
+  font-size: 1.15rem;
   font-weight: 800;
-  color: var(--text-dark);
+  color: var(--primary-blue);
+  line-height: 1.1;
+}
+
+.priceOMR {
+  font-size: 0.72rem;
+  color: #E1212B;
+  font-weight: 600;
+}
+
+.actionBtns {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.detailsBtn {
+  background: #F1F5F9;
+  color: #334155;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.detailsBtn:hover {
+  background: #E2E8F0;
+  color: #0f172a;
 }
 
 .enrollBtn {
-  padding: 0.4rem 0.75rem;
+  padding: 0.45rem 0.8rem;
   font-size: 0.8rem;
   border-radius: var(--radius-sm);
+  gap: 0.3rem;
 }

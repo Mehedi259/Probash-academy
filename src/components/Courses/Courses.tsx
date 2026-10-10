@@ -1,104 +1,200 @@
-import React from 'react';
-import { BookOpen, Star, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { BookOpen, Star, ArrowRight, Clock, Eye, Sparkles } from 'lucide-react';
+import { coursesData, type Course } from '../../data/coursesData';
+import { useAuth } from '../../context/AuthContext';
+import CourseDetailsModal from './CourseDetailsModal';
 import styles from './Courses.module.css';
 
-const Courses: React.FC = () => {
-  const courses = [
-    {
-      id: 1,
-      title: 'ওমানি আরবি - বেসিক কোর্স',
-      subtitle: 'দৈনন্দিন জীবনের জন্য প্র্যাক্টিক্যাল আরবি',
-      image: 'https://images.unsplash.com/photo-1546410531-f5139c894562?q=80&w=2070&auto=format&fit=crop',
-      lessons: 30,
-      rating: 4.8,
-      reviews: '1.2k',
-      price: '1,500',
-    },
-    {
-      id: 2,
-      title: 'ওমানের নিয়ম-কানুন ও সংস্কৃতি',
-      subtitle: 'নতুন প্রবাসীদের জন্য পূর্ণাঙ্গ গাইড',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop',
-      lessons: 25,
-      rating: 4.7,
-      reviews: '950',
-      price: '1,200',
-    },
-    {
-      id: 3,
-      title: 'ওমান ভিসা প্রসেস (A to Z)',
-      subtitle: 'ভিসা, আকামা, মেডিকেল, নবায়ন',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2070&auto=format&fit=crop',
-      lessons: 28,
-      rating: 4.9,
-      reviews: '1.1k',
-      price: '1,800',
-    },
-    {
-      id: 4,
-      title: 'কাজের ভাষা ও যোগাযোগ',
-      subtitle: 'ওয়ার্কপ্লেস কমিউনিকেশন স্কিল',
-      image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop',
-      lessons: 20,
-      rating: 4.6,
-      reviews: '780',
-      price: '1,200',
-    },
-    {
-      id: 5,
-      title: 'ডিজিটাল স্কিলস ফর প্রবাসী',
-      subtitle: 'অনলাইন ইনকাম ও ফ্রিল্যান্সিং',
-      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop',
-      lessons: 40,
-      rating: 4.8,
-      reviews: '1.5k',
-      price: '2,000',
+interface CoursesProps {
+  onGoToDashboard: (courseId?: string) => void;
+  onOpenLogin: () => void;
+  selectedCourseId?: string | null;
+}
+
+const Courses: React.FC<CoursesProps> = ({
+  onGoToDashboard,
+  onOpenLogin,
+  selectedCourseId
+}) => {
+  const { user } = useAuth();
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [modalCourse, setModalCourse] = useState<Course | null>(() => {
+    if (selectedCourseId) {
+      return coursesData.find((c) => c.id === selectedCourseId) || null;
     }
-  ];
+    return null;
+  });
+
+  // Update when selectedCourseId changes
+  React.useEffect(() => {
+    if (selectedCourseId) {
+      const match = coursesData.find((c) => c.id === selectedCourseId);
+      if (match) {
+        setModalCourse(match);
+      }
+    }
+  }, [selectedCourseId]);
+
+  const filteredCourses = activeCategory === 'all'
+    ? coursesData
+    : coursesData.filter((c) => {
+        if (activeCategory === 'language') return c.category === 'language';
+        if (activeCategory === 'guide-visa') return c.category === 'guide' || c.category === 'visa';
+        if (activeCategory === 'skills') return c.category === 'skills';
+        return true;
+      });
 
   return (
-    <section className={styles.coursesSection}>
+    <section id="courses" className={styles.coursesSection}>
       <div className="container">
-        <div className="flex-between">
+        <div className={styles.headerRow}>
           <div>
-            <h2 className="section-title">জনপ্রিয় কোর্সসমূহ</h2>
-            <p className="section-subtitle">আপনার প্রবাস জীবনের জন্য সবচেয়ে প্রয়োজনীয় কোর্স</p>
+            <div className={styles.badgeWrapper}>
+              <span className={styles.sectionBadge}>
+                <Sparkles size={14} /> ৫টি বিশেষায়িত প্রবাস কোর্স
+              </span>
+            </div>
+            <h2 className="section-title">প্রবাসীদের জন্য আমাদের নির্বাচিত কোর্সসমূহ</h2>
+            <p className="section-subtitle">
+              ওমান প্রবাস জীবনকে সহজ, নিরাপদ এবং উন্নত আয়ের উপযোগী করতে তৈরি ৫টি অপরিহার্য কোর্স
+            </p>
           </div>
-          <button className={`btn btn-outline ${styles.viewAllBtn}`}>
-            সকল কোর্স দেখুন <ArrowRight size={16} />
-          </button>
+
+          <div className={styles.filterPills}>
+            <button
+              type="button"
+              className={`${styles.filterBtn} ${activeCategory === 'all' ? styles.activeFilter : ''}`}
+              onClick={() => setActiveCategory('all')}
+            >
+              সকল কোর্স (৫)
+            </button>
+            <button
+              type="button"
+              className={`${styles.filterBtn} ${activeCategory === 'language' ? styles.activeFilter : ''}`}
+              onClick={() => setActiveCategory('language')}
+            >
+              ভাষা শিক্ষা (আরবি ও ইংরেজি)
+            </button>
+            <button
+              type="button"
+              className={`${styles.filterBtn} ${activeCategory === 'guide-visa' ? styles.activeFilter : ''}`}
+              onClick={() => setActiveCategory('guide-visa')}
+            >
+              ওমান গাইড ও ভিসা
+            </button>
+            <button
+              type="button"
+              className={`${styles.filterBtn} ${activeCategory === 'skills' ? styles.activeFilter : ''}`}
+              onClick={() => setActiveCategory('skills')}
+            >
+              ভিডিও এডিটিং ও স্কিলস
+            </button>
+          </div>
         </div>
 
         <div className={styles.grid}>
-          {courses.map((course) => (
-            <div key={course.id} className={styles.card}>
-              <div className={styles.imageContainer}>
-                <img src={course.image} alt={course.title} className={styles.courseImage} />
-              </div>
-              <div className={styles.cardContent}>
-                <h3 className={styles.courseTitle}>{course.title}</h3>
-                <p className={styles.courseSubtitle}>{course.subtitle}</p>
-                
-                <div className={styles.metaInfo}>
-                  <div className={styles.metaItem}>
-                    <BookOpen size={14} />
-                    <span>{course.lessons} Lessons</span>
-                  </div>
-                  <div className={styles.metaItem}>
-                    <Star size={14} color="#F59E0B" fill="#F59E0B" />
-                    <span>{course.rating} ({course.reviews})</span>
+          {filteredCourses.map((course) => {
+            const isEnrolled = user?.enrolledCourseIds.includes(course.id);
+            return (
+              <div key={course.id} className={styles.card}>
+                <div
+                  className={styles.imageContainer}
+                  onClick={() => setModalCourse(course)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <img src={course.image} alt={course.title} className={styles.courseImage} />
+                  <span
+                    className={styles.cardBadge}
+                    style={{ backgroundColor: course.badgeColor }}
+                  >
+                    {course.badge}
+                  </span>
+                  <div className={styles.imageOverlay}>
+                    <button type="button" className={styles.previewBtn}>
+                      <Eye size={16} /> কারিকুলাম ও বিবরণ দেখুন
+                    </button>
                   </div>
                 </div>
-                
-                <div className={styles.cardFooter}>
-                  <div className={styles.price}>৳ {course.price}</div>
-                  <button className={`btn btn-primary ${styles.enrollBtn}`}>এনরোল করুন</button>
+
+                <div className={styles.cardContent}>
+                  <div className={styles.instructorMini}>
+                    <img src={course.instructorAvatar} alt={course.instructorName} className={styles.instructorImg} />
+                    <span className={styles.instructorNameTxt}>{course.instructorName}</span>
+                  </div>
+
+                  <h3
+                    className={styles.courseTitle}
+                    onClick={() => setModalCourse(course)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {course.title}
+                  </h3>
+                  <span className={styles.englishTitleTag}>{course.englishTitle}</span>
+                  <p className={styles.courseSubtitle}>{course.subtitle}</p>
+
+                  <div className={styles.metaInfo}>
+                    <div className={styles.metaItem}>
+                      <BookOpen size={14} />
+                      <span>{course.lessonsCount} Lessons</span>
+                    </div>
+                    <div className={styles.metaItem}>
+                      <Clock size={14} />
+                      <span>{course.durationHours}h</span>
+                    </div>
+                    <div className={styles.metaItem}>
+                      <Star size={14} color="#F59E0B" fill="#F59E0B" />
+                      <span>{course.rating} ({course.reviewsCount})</span>
+                    </div>
+                  </div>
+
+                  <div className={styles.cardFooter}>
+                    <div className={styles.priceContainer}>
+                      <span className={styles.priceBDT}>৳ {course.priceBDT.toLocaleString()}</span>
+                      <span className={styles.priceOMR}>({course.priceOMR} OMR)</span>
+                    </div>
+
+                    <div className={styles.actionBtns}>
+                      <button
+                        type="button"
+                        className={styles.detailsBtn}
+                        onClick={() => setModalCourse(course)}
+                        title="বিস্তারিত দেখুন"
+                      >
+                        বিস্তারিত
+                      </button>
+                      <button
+                        type="button"
+                        className={`btn btn-primary ${styles.enrollBtn}`}
+                        onClick={() => {
+                          if (isEnrolled) {
+                            onGoToDashboard(course.id);
+                          } else {
+                            setModalCourse(course);
+                          }
+                        }}
+                      >
+                        {isEnrolled ? 'ক্লাস শুরু' : 'এনরোল'} <ArrowRight size={13} />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
+
+      {/* Course Details Modal */}
+      <CourseDetailsModal
+        course={modalCourse}
+        isOpen={!!modalCourse}
+        onClose={() => setModalCourse(null)}
+        onGoToDashboard={(courseId) => {
+          setModalCourse(null);
+          onGoToDashboard(courseId);
+        }}
+        onOpenLogin={onOpenLogin}
+      />
     </section>
   );
 };

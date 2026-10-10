@@ -30,6 +30,19 @@
   margin-bottom: 1rem;
 }
 
+.logoBadge {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--primary-red);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.35rem;
+}
+
 .logoImg {
   border-radius: 50%;
   padding: 2px;
